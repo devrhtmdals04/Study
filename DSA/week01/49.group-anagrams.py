@@ -13,18 +13,24 @@
 # @lc code=start
 class Solution(object):
     def groupAnagrams(self, strs):
-        hashmap = {}
-        output = []
+        hashmap = defaultdict(list)
         for i, s in enumerate(strs):
-            for a in s:
-                if a not in hashmap:
-                    continue
-            output.append(s)
-        return output
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-        
+            sorted_s = "".join(sorted(s))
+            hashmap[sorted_s].append(s)
+        return list(hashmap.values())
+    
+#dont use sort
+
+class Solution(object):
+    def groupAnagrams(self, strs):
+        hashmap = defaultdict(list)
+        for str in strs:
+            alphacount = [0]*26
+            for s in str:
+                alphacount[ord(s)-ord('a')] += 1
+            key = tuple(alphacount)
+            hashmap[alphacount].append(str)
+        return list(hashmap.values())
+
 # @lc code=end
 
