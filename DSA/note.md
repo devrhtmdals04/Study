@@ -10,3 +10,13 @@
 
 # checklist
 # if you did 'tuple(list)' the 'list' doesn't tuplicated. do tupled = tuple(list) and use tupled, then, tupled will be tuble.
+
+# why two-pointer neds sort? 
+# 1. Avoid Duplications. use while comparison. 
+# 2. Optimization pointing. if you need sum, if the diff is lower than you want, upper left pointer of sorted list, than you can get optimized pointer.
+
+# make dictionary by Pythonic way: 'dict[key] = dict.get(key, default) + 1' this will make your code compact. by using this 
+
+# How to sort dictionary by items?
+# sorteddictbyitems = sorted(dict.items(), key = lambda x:x[1], reverse=True) this is Descending order, if you wand right order, use reverse=False.
+# Or use this Pythonic method: dict.get(key, value)
