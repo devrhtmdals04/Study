@@ -1,0 +1,7 @@
+# 선택 의존성 (설치하면 더 편해짐)
+numpy
+sympy
+matplotlib
+jupyterlab
+ipykernel
+

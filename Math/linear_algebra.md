@@ -1,0 +1,3 @@
+# references
+## https://github.com/jonkrohn/ML-foundations   
+## https://www.youtube.com/watch?v=NMTQ7rodUxY&list=PLRDl2inPrWQW1QSWhBU0ki-jq_uElkh2a&index=2
