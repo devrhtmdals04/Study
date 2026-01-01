@@ -20,3 +20,8 @@
 # How to sort dictionary by items?
 # sorteddictbyitems = sorted(dict.items(), key = lambda x:x[1], reverse=True) this is Descending order, if you wand right order, use reverse=False.
 # Or use this Pythonic method: dict.get(key, value)
+
+# how to make index rule in two-dimention list?
+# you have i, j for two-dimention list. each index can get 0~2 values. so you can product 3times one of then(particulary i).
+# so, use '(i//3)*3 + (j//3)'.
+
