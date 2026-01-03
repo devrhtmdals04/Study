@@ -25,3 +25,6 @@
 # you have i, j for two-dimention list. each index can get 0~2 values. so you can product 3times one of then(particulary i).
 # so, use '(i//3)*3 + (j//3)'.
 
+# windiwsliding method. this method is related in two-pointer. only use left and right to check. you can check in-and-out of
+# left and right value and move pointer. this can reduce time opacity O(n^2) tom O(n) but needs lot of understand of the problem.
+
