@@ -28,3 +28,7 @@
 # windiwsliding method. this method is related in two-pointer. only use left and right to check. you can check in-and-out of
 # left and right value and move pointer. this can reduce time opacity O(n^2) tom O(n) but needs lot of understand of the problem.
 
+# why use QUEUE instead of list? becouse of time opacity. when you need to pullout first element of list, the python list moves
+# all of the later elements to zeroindex. so it spends O(nlogn). but the QUEUE just use QUEUE.popleft(). this requires O(1).
+# How to use? 
+# q = deque(), q.pop(), q.popleft(), q.append(), q.appendleft().
