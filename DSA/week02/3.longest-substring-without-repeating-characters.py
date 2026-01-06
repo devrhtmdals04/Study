@@ -8,13 +8,14 @@
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         res = 0
-        mp = []
+        mp = {}
         l = 0
-        for r in range(len(s)):
+        for r in range(s):
             if s[r] in mp:
-                l = max(mp[r]+1, l)
+                l =  max(mp[s[r]]+1, l)
             mp[s[r]] = r
-            res = max(res, r-1+1)
+            res = max(r-l+1, res)
+        return max
         
 # @lc code=end
 
