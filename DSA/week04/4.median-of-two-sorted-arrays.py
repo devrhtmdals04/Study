@@ -27,8 +27,9 @@ class Solution(object):
                     return min(rightA, rightB)
                 else:
                     return (max(leftA, leftB) + min(rightA, rightB)) / 2
-            elif leftA < rightB:
-                r = i - 1 
+                
+            elif leftA > rightB:
+                r = i - 1
             else:
                 l = i + 1
 
