@@ -11,13 +11,42 @@ class TreeNode(object):
         self.val = val
         self.left = left
         self.right = right
+        
 class Solution(object):
     def invertTree(self, root):
         if not root:
             return None
-        
         root.left, root.right = root.right, root.left
         self.invertTree(root.left)
         self.invertTree(root.right)
+
+class Solution(object):
+    def invertTree(self, root):
+        if not root:
+            return None
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            node.left, node.right = node.right, node.left
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+        return root
+
+from collections import deque
+class Solution(object):
+    def invertTree(self, root):
+        if not root:
+            return None
+        queue = deque([root])
+        while queue:
+            node = queue.popleft()
+            node.left, node.right = node.right, node.left
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        return root
 # @lc code=end
 
