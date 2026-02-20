@@ -11,6 +11,19 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+class Solution(object):
+    def rightSideView(self, root):
+        res = []
+        def dfs(node, depth):
+            if not node:
+                return None
+            if depth == len(res):
+                res.append(node.val)
+            dfs(node.right, depth + 1)
+            dfs(node.left, depth + 1)
+        dfs(root, 0)
+        return res
+    
 from collections import deque
 class Solution(object):
     def rightSideView(self, root):
@@ -29,6 +42,7 @@ class Solution(object):
             if level:
                 res.append(level[-1])
         return res
+
         
 # @lc code=end
 

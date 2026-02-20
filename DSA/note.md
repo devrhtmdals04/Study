@@ -35,7 +35,7 @@
 
 # when you want to get upper devision quotient. in X // Y you'll get integer quotient underred. then, you use (X + Y - 1) // Y.
 
-# 재귀함수의 실행 흐름: 부메랑의 법칙 🪃
+# 재귀함수의 실행 흐름: 부메랑의 법칙 
 
 재귀함수는 단순히 반복하는 것이 아니라, **깊이 들어갔다가(Dive) 다시 거슬러 올라오는(Unwind)** "V"자 형태의 흐름을 가집니다. 코드의 위치에 따라 실행 순서가 정반대가 된다는 점이 핵심입니다.
 
@@ -94,3 +94,73 @@ Python의 **딕셔너리(Dictionary)**는 내부적으로 **해시 테이블(Has
 ```python
 dummy = ListNode(0)      # 0x100 번지에 노드 생성
 groupPrev = dummy        # dummy가 가리키는 주소를 groupPrev도 공유
+
+# 이진 트리 뒤집기(Invert Binary Tree) 알고리즘 비교
+
+이 문서는 이진 트리를 좌우 반전시키는 세 가지 주요 접근 방식(**Queue, Stack, Recursion**)의 동작 원리, 코드, 그리고 장단점을 비교 분석합니다.
+
+---
+
+## 1. 한 눈에 보는 비교 (Summary)
+
+모든 방식의 **시간 복잡도는 $O(N)$** 으로 동일합니다. (모든 노드를 한 번씩 방문해야 하기 때문)
+차이점은 **공간 복잡도(메모리 사용 패턴)**와 **방문 순서**에 있습니다.
+
+| 특징 | **1. Queue (BFS)** | **2. Stack (Iterative DFS)** | **3. Recursive (DFS)** |
+| :--- | :--- | :--- | :--- |
+| **탐색 방식** | **너비 우선 (BFS)**<br>위층부터 가로로 훑음 | **깊이 우선 (DFS)**<br>한쪽 끝까지 파고듦 | **깊이 우선 (DFS)**<br>시스템 콜 스택 이용 |
+| **자료구조** | `deque` (FIFO) | `list` (LIFO) | System Call Stack |
+| **공간 복잡도** | $O(w)$ (트리의 **최대 너비**) | $O(h)$ (트리의 **높이**) | $O(h)$ (트리의 **높이**) |
+| **메모리 위험** | 트리가 **뚱뚱할 때** (Wide) 불리 | 트리가 **깊을 때** (Deep) 불리 | 트리가 **매우 깊을 때**<br>(RecursionError 위험) |
+| **코드 특징** | `popleft()` 사용 | `pop()` 사용 | 코드가 가장 간결함 |
+
+---
+
+## 2. 상세 분석 및 코드
+
+### ① Queue 방식 (BFS: 너비 우선 탐색)
+**"위에서부터 한 줄씩, 층별로 처리한다."**
+
+* **동작:** 큐(Queue)를 사용하여 먼저 들어온 노드를 먼저 처리(FIFO)합니다.
+* **장점:** 직관적이며, 트리의 깊이가 깊어도 스택 오버플로우가 발생하지 않습니다.
+* **단점:** 트리의 너비가 넓을수록(Full Binary Tree 등) 큐에 저장되는 노드가 많아져 메모리를 많이 사용합니다.
+
+from collections import deque
+
+def invertTree(root):
+    if not root:
+        return None
+        
+    queue = deque([root])
+    
+    while queue:
+        node = queue.popleft()  # 앞에서 꺼냄 (FIFO)
+        
+        # 자식 노드 교환 (Swap)
+        node.left, node.right = node.right, node.left
+        
+        # 다음 층의 자식들을 대기열에 등록
+        if node.left: queue.append(node.left)
+        if node.right: queue.append(node.right)
+            
+    return root
+
+# 구분,영어 명칭,순서 (공식),처리(Visit) 시점,주요 특징
+# 전위 순회,Preorder,Root → Left → Right,노드에 도착하자마자,트리의 구조를 파악하거나 복사할 때 사용
+# 중위 순회,Inorder,Left → Root → Right,왼쪽 자식을 다 보고 돌아와서,BST에서 값을 오름차순으로 가져올 때 사용
+
+    # 전위 순회 (Preorder)
+def preorder(node):
+    if not node: return
+    
+    print(node.val)      # 1. 나부터 처리 ("Pre")
+    preorder(node.left)  # 2. 왼쪽
+    preorder(node.right) # 3. 오른쪽
+
+# 중위 순회 (Inorder)
+def inorder(node):
+    if not node: return
+    
+    inorder(node.left)   # 1. 왼쪽
+    print(node.val)      # 2. 돌아와서 나 처리 ("In")
+    inorder(node.right)  # 3. 오른쪽

@@ -13,6 +13,10 @@ class Solution(object):
             if len(minHeap) > k:
                 heapq.heappop(minHeap)
         return minHeap[0] if minHeap else 0
+
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        return heapq.nlargest(k, nums)[-1]
         
 # @lc code=end
 

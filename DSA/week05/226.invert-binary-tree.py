@@ -11,7 +11,7 @@ class TreeNode(object):
         self.val = val
         self.left = left
         self.right = right
-        
+
 class Solution(object):
     def invertTree(self, root):
         if not root:

@@ -25,6 +25,22 @@ class Solution(object):
 
             return res
         return dfs(root, root.val)
-        
+
+from collections import deque
+class Solution(object):
+    def goodNodes(self, root):
+        q = deque()
+        q.append([root, -float('inf')])
+        res = 0
+
+        while q:
+            node, maxVal = q.popleft()
+            if node.val >= maxVal:
+                res += 1
+            if node.left:
+                q.append([node.left, max(node.val, maxVal)])
+            if node.right:
+                q.append([node.right, max(node.val, maxVal)])
+        return res
 # @lc code=end
 

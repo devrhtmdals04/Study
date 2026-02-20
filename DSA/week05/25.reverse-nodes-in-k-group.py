@@ -32,6 +32,7 @@ class Solution(object):
             tmp = groupPrev.next
             groupPrev.next = kth
             groupPrev = tmp
+            
         return dummy.next
     
     def findKth(self, curr, k):
