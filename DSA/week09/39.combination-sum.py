@@ -8,6 +8,7 @@
 class Solution(object):
     def combinationSum(self, candidates, target):
         res = []
+        candidates.sort()
         def dfs(i, total, cur):
             if total == target:
                 res.append(cur.copy())
@@ -17,7 +18,7 @@ class Solution(object):
                 if total + candidates[j] > target:
                     return       
                 cur.append(candidates[j])
-                dfs(i, total, cur)
+                dfs(j, total, cur)
                 cur.pop()
 
         dfs(0, 0, [])

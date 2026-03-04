@@ -20,5 +20,20 @@ class Solution(object):
                 res.append(p_copy)
         return res
         
+class Solution(object):
+    def permute(self, nums):
+        self.res = []
+        self.backtrack(nums, 0)
+        return self.res
+    
+    def backtrack(self, nums, idx):
+        if idx == len(nums):
+            self.res.append(nums.copy())
+            return
+        for i in range(idx, len(nums)):
+            nums[idx], nums[i] = nums[idx], nums[i]
+            self.backtrack(nums, idx+1)
+            nums[idx], nums[i] = nums[i], nums[idx]
+        
 # @lc code=end
 
