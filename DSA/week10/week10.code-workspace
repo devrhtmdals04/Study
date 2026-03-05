@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "week01",
+			"path": "../week01"
+		}
+	],
+	"settings": {}
+}
